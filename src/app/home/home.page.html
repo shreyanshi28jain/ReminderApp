@@ -1,0 +1,67 @@
+<ion-header>
+   <ion-toolbar>
+      <img src="../../assets/icon.jfif" class="remImg">
+    <ion-title class="head">
+     
+         NoteBook!
+    </ion-title>
+   </ion-toolbar>
+   <ion-buttons end>
+      <ion-button color="danger" *ngIf="notificationExists"  icon-only (click)="cancelNotification(1)">
+         <ion-icon ios="ios-close" md="md-close"></ion-icon>
+         Cancel</ion-button>
+      <!-- <button *ngIf="notificationExists" ion-button icon-only (click)="cancelNotifications(1)"  class="btn btn-danger">
+         <ion-icon ios="ios-close" md="md-close"></ion-icon> Cancel
+      </button> -->
+   </ion-buttons>
+</ion-header>
+
+<ion-content padding>
+   <div margin-top margin-bottom>
+      <img src="../../assets/homepage.jfif" class="homePage">
+      <p>
+         Set Reminder!
+      </p>
+
+     <form [formGroup]="form" >
+       <ion-list>
+           <ion-item margin-bottom>
+             <ion-input
+                type="text"
+                placeholder="Enter Heading"
+                clearInput=true
+                [(ngModel)]="notification"
+                formControlName="notification">
+            </ion-input>
+          </ion-item>
+            <ion-item margin-bottom>
+             <ion-textarea placeholder="Enter Message " clearInput=true [(ngModel)]="summary" formControlName="summary">
+            </ion-textarea>
+          </ion-item>
+
+
+          <span
+             ion-button
+             block
+             padding
+             color="secondary"
+             (click)="selectDateForScheduling()"
+              margin-bottom>Select Reminder date/time</span>
+<br>
+          <input
+             type="text"
+             formControlName="published"
+             [(ngModel)]="published" *ngIf="published != ''" placeholder="select date" disabled>
+
+             <ion-button  text-center  [disabled]="!form.valid" (click)="generateReminder()">Create Reminder</ion-button>
+             <!-- <button
+              class="btn btn-primary"
+                text-center
+               [disabled]="!form.valid">Create notification</button> -->
+        </ion-list>
+     </form>
+
+  </div>
+
+
+</ion-content>
